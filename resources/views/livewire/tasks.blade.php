@@ -6,8 +6,8 @@
             <label class="flex items-center py-2" wire:click="toggleComplete({{ $task->id }})">
                 <input type="checkbox" class="form-checkbox" {{ $task->completed ? 'checked' : '' }}>
                 <span class="ml-2 font-bold text-gray-600 {{ $task->completed ? 'line-through' : '' }}">
-                {{ $task->name }}
-            </span>
+                    {{ $task->name }}
+                </span>
             </label>
         @endforeach
     </div>
