@@ -11,6 +11,10 @@ class CreateTask extends Component
 
     public function store()
     {
+        if (strlen($this->task) === 0) {
+            return;
+        }
+
         Task::create(['name' => $this->task]);
         $this->task = '';
 
