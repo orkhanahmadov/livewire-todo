@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Task;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
@@ -21,7 +21,7 @@ class Tasks extends Component
 
     public function fetchTasks(): void
     {
-        $tasks = Task::orderBy('completed_at')->orderByDesc('updated_at')->get();
+        $tasks = Task::orderBy('completed_at')->orderByDesc('id')->get();
 
         $this->incompleteTasks = $tasks->filter(fn (Task $task) => is_null($task->completed_at));
         $this->completeTasks = $tasks->filter(fn (Task $task) => !is_null($task->completed_at));

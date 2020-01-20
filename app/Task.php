@@ -13,4 +13,9 @@ class Task extends Model
     protected $dates = [
         'completed_at',
     ];
+
+    public function getFormattedCompletedAtAttribute(): ?string
+    {
+        return optional($this->completed_at)->timezone('Europe/Berlin')->format('d.m.Y H:i');
+    }
 }
