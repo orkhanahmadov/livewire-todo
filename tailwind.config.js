@@ -1,6 +1,16 @@
+const { fontFamily } = require('tailwindcss/defaultTheme')
+
 module.exports = {
-  theme: {},
-  variants: {},
+  theme: {
+      extend: {
+          fontFamily: {
+              serif: ['Nunito', ...fontFamily.serif]
+          },
+      }
+  },
+  variants: {
+    padding: ['responsive', 'first', 'last', 'hover', 'focus'],
+  },
   plugins: [
     require('@tailwindcss/custom-forms'),
   ]

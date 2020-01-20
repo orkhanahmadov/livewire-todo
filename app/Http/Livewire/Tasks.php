@@ -19,7 +19,7 @@ class Tasks extends Component
 
     public function fetchTasks()
     {
-        $this->tasks = Task::all();
+        $this->tasks = Task::orderByDesc('id')->get();
     }
 
     public function toggleComplete(int $taskId)
@@ -28,6 +28,8 @@ class Tasks extends Component
 
         $task->completed = !$task->completed;
         $task->save();
+
+        $this->fetchTasks();
     }
 
     public function render()

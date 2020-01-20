@@ -1,7 +1,6 @@
-<label class="block bg-white shadow rounded p-4 mb-6">
-    <span class="text-gray-600 font-bold uppercase text-sm">Create a new task</span>
-    <input class="form-input mt-1 block w-full"
-           placeholder="Do something..."
+<label class="block shadow-lg mb-5">
+    <input class="form-input mt-1 block w-full bg-gray-100"
+           placeholder="New task..."
            wire:model="task"
            wire:keydown.enter="store" />
 </label>
