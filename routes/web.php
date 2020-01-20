@@ -8,4 +8,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', LivewireController::class)->name('livewire');
 Route::get('/vue', VueController::class)->name('vue');
 
+Route::get('/tasks', [TasksController::class, 'index']);
 Route::post('/tasks', [TasksController::class, 'store']);

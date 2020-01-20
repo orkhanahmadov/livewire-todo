@@ -14,8 +14,14 @@ class Task extends Model
         'completed_at',
     ];
 
+    protected $appends = [
+        'formatted_completed_at',
+    ];
+
     public function getFormattedCompletedAtAttribute(): ?string
     {
-        return optional($this->completed_at)->timezone('Europe/Berlin')->format('d.m.Y H:i');
+        return $this->completed_at
+            ? $this->completed_at->timezone('Europe/Berlin')->format('d.m.Y H:i')
+            : null;
     }
 }

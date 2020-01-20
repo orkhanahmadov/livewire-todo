@@ -188,7 +188,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _CreateTask__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateTask */ "./resources/js/CreateTask.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _CreateTask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateTask */ "./resources/js/CreateTask.vue");
+/* harmony import */ var _Tasks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Tasks */ "./resources/js/Tasks.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
 //
 //
 //
@@ -202,9 +214,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    CreateTask: _CreateTask__WEBPACK_IMPORTED_MODULE_0__["default"]
+    CreateTask: _CreateTask__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Tasks: _Tasks__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {
+      incompleteTasks: [],
+      completeTasks: []
+    };
+  },
+  mounted: function mounted() {
+    this.fetchTasks();
+  },
+  methods: {
+    fetchTasks: function () {
+      var _fetchTasks = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var _ref, body;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return fetch('/tasks', {
+                  method: 'GET',
+                  credentials: 'same-origin',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                  }
+                });
+
+              case 2:
+                _ref = _context.sent;
+                body = _ref.body;
+                console.log(body);
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      function fetchTasks() {
+        return _fetchTasks.apply(this, arguments);
+      }
+
+      return fetchTasks;
+    }()
   }
 });
 
@@ -1499,7 +1563,13 @@ var render = function() {
     _c(
       "div",
       { staticClass: "bg-white shadow-lg rounded p-5" },
-      [_c("create-task"), _vm._v("\n\n        tasks\n    ")],
+      [
+        _c("create-task"),
+        _vm._v(" "),
+        _c("div", { staticClass: "pt-4" }, [
+          _vm._v("\n                tasks\n")
+        ])
+      ],
       1
     )
   ])

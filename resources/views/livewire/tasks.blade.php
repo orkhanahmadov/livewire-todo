@@ -4,6 +4,8 @@
     <div class="bg-white shadow-lg rounded p-5">
         @livewire('create-task')
 
-        @livewire('task-list')
+        <div class="pt-4">
+            @livewire('task-list')
+        </div>
     </div>
 </div>

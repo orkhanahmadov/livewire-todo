@@ -5,17 +5,48 @@
         <div class="bg-white shadow-lg rounded p-5">
             <create-task />
 
-            tasks
+            <div class="pt-4">
+                tasks
+<!--                <tasks />-->
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 import CreateTask from './CreateTask'
+import Tasks from './Tasks'
 
 export default {
     components: {
-        CreateTask
+        CreateTask,
+        Tasks
+    },
+
+    data() {
+        return {
+            incompleteTasks: [],
+            completeTasks: [],
+        }
+    },
+
+    mounted() {
+        this.fetchTasks()
+    },
+
+    methods: {
+        async fetchTasks() {
+            const { body } = await fetch('/tasks', {
+                method: 'GET',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+
+            console.log(body)
+        }
     }
 }
 </script>

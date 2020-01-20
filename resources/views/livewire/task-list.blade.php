@@ -1,4 +1,4 @@
-<div class="pt-4">
+<div>
     @if(count($incompleteTasks) === 0)
         <h2 class="block text-center text-gray-600 font-bold text-lg pb-3">Good job! 🤙 You completed all tasks!</h2>
     @endif
