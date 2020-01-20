@@ -2,19 +2,17 @@
 
 namespace App\Http\Livewire;
 
+use App\Task;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class Tasks extends Component
 {
-    public array $tasks = [];
+    public Collection $tasks;
 
     public function mount(): void
     {
-        $this->tasks = [
-            'Attend event',
-            'Showcase Laravel Livewire',
-            'Create Livewire application',
-        ];
+        $this->tasks = Task::all();
     }
 
     public function render()
