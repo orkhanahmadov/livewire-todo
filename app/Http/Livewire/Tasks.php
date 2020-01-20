@@ -22,6 +22,14 @@ class Tasks extends Component
         $this->tasks = Task::all();
     }
 
+    public function markAsComplete(int $taskId)
+    {
+        $task = Task::find($taskId);
+
+        $task->completed = true;
+        $task->save();
+    }
+
     public function render()
     {
         return view('livewire.tasks');
