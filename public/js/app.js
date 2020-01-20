@@ -135,7 +135,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _store = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
+        var _ref, status;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -143,16 +144,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 2;
                 return fetch('/tasks', {
                   method: 'POST',
+                  credentials: 'same-origin',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                  },
                   body: JSON.stringify({
                     task: this.task
                   })
                 });
 
               case 2:
-                response = _context.sent;
-                console.log(response);
+                _ref = _context.sent;
+                status = _ref.status;
+                if (status === 201) this.$emit('updateList');
 
-              case 4:
+              case 5:
               case "end":
                 return _context.stop();
             }

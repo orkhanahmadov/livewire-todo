@@ -17,12 +17,19 @@ export default {
 
     methods: {
         async store() {
-            const response = await fetch('/tasks', {
+            const { status } = await fetch('/tasks', {
                 method: 'POST',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
                 body: JSON.stringify({task: this.task})
             })
 
-            console.log(response)
+            if (status === 201)
+                this.$emit('updateList')
         }
     }
 }
