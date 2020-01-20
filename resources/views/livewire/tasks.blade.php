@@ -10,7 +10,7 @@
             >
                 <input type="checkbox" class="form-checkbox bg-gray-100 w-5 h-5">
 
-                <span class="block ml-2 text-lg text-gray-600 line-through">{{ $task->name }}</span>
+                <span class="block ml-2 text-lg text-gray-600">{{ $task->name }}</span>
             </label>
 
             <button class="ml-2 bg-gray-500 text-white text-sm rounded px-1"
