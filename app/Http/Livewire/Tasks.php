@@ -47,6 +47,13 @@ class Tasks extends Component
         $this->fetchTasks();
     }
 
+    public function delete(int $taskId): void
+    {
+        Task::findOrFail($taskId)->delete();
+
+        $this->fetchTasks();
+    }
+
     public function render(): View
     {
         return view('livewire.tasks');
