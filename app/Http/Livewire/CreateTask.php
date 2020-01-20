@@ -12,11 +12,13 @@ class CreateTask extends Component
 
     public function store(): void
     {
-        if (strlen($this->task) === 0) {
+        $name = trim($this->task);
+
+        if (strlen($name) === 0) {
             return;
         }
 
-        Task::create(['name' => $this->task]);
+        Task::create(compact('name'));
         $this->task = '';
 
         $this->emit('updateList');
