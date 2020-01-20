@@ -22,11 +22,11 @@ class Tasks extends Component
         $this->tasks = Task::all();
     }
 
-    public function markAsComplete(int $taskId)
+    public function toggleComplete(int $taskId)
     {
         $task = Task::find($taskId);
 
-        $task->completed = true;
+        $task->completed = !$task->completed;
         $task->save();
     }
 
