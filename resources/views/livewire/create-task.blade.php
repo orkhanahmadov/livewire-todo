@@ -3,6 +3,5 @@
     <input class="form-input mt-1 block w-full"
            placeholder="Do something..."
            wire:model="task"
-           wire:keydown.enter="store"
-           wire:keydown.enter="$emit('updateList')" />
+           wire:keydown.enter="store" />
 </label>

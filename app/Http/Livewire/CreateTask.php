@@ -12,6 +12,9 @@ class CreateTask extends Component
     public function store()
     {
         Task::create(['name' => $this->task]);
+        $this->task = '';
+
+        $this->emit('updateList');
     }
 
     public function render()

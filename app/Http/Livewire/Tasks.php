@@ -10,7 +10,14 @@ class Tasks extends Component
 {
     public Collection $tasks;
 
+    protected $listeners = ['updateList' => 'fetchTasks'];
+
     public function mount(): void
+    {
+        $this->fetchTasks();
+    }
+
+    public function fetchTasks()
     {
         $this->tasks = Task::all();
     }
