@@ -14,15 +14,13 @@ class TaskSeeder extends Seeder
         collect([
             [
                 'name' => 'Attend event',
-                'completed' => true
+                'completed_at' => now()
             ],
             [
-                'name' => 'Showcase Laravel Livewire',
-                'completed' => false
+                'name' => 'Showcase Laravel Livewire'
             ],
             [
-                'name' => 'Create Livewire application',
-                'completed' => false
+                'name' => 'Create Livewire application'
             ],
         ])->each(fn ($task) => \App\Task::create($task));
 

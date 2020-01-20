@@ -4,11 +4,13 @@ namespace App\Http\Livewire;
 
 use App\Task;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class Tasks extends Component
 {
-    public Collection $tasks;
+    public Collection $incompleteTasks;
+    public Collection $completeTasks;
 
     protected $listeners = ['updateList' => 'fetchTasks'];
 
@@ -17,22 +19,35 @@ class Tasks extends Component
         $this->fetchTasks();
     }
 
-    public function fetchTasks()
+    public function fetchTasks(): void
     {
-        $this->tasks = Task::orderByDesc('id')->get();
+        $tasks = Task::orderBy('completed_at')->orderByDesc('updated_at')->get();
+
+        $this->incompleteTasks = $tasks->filter(fn (Task $task) => is_null($task->completed_at));
+        $this->completeTasks = $tasks->filter(fn (Task $task) => !is_null($task->completed_at));
     }
 
-    public function toggleComplete(int $taskId)
+    public function markAsComplete(int $taskId): void
     {
-        $task = Task::find($taskId);
+        $this->mark($taskId, true);
+    }
 
-        $task->completed = !$task->completed;
+    public function markAsIncomplete(int $taskId): void
+    {
+        $this->mark($taskId, false);
+    }
+
+    private function mark(int $taskId, bool $completed): void
+    {
+        $task = Task::findOrFail($taskId);
+
+        $task->completed_at = $completed ? now() : null;
         $task->save();
 
         $this->fetchTasks();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.tasks');
     }

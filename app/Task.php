@@ -9,4 +9,8 @@ class Task extends Model
     protected $fillable = [
         'name',
     ];
+
+    protected $dates = [
+        'completed_at',
+    ];
 }
