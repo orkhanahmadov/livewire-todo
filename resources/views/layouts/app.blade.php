@@ -16,7 +16,7 @@
 </head>
 <body class="bg-gray-100">
     <div id="app" class="flex items-center h-screen">
-        <main class="bg-white shadow rounded mx-auto w-1/3 p-4">
+        <main class="mx-auto w-1/3">
             @yield('content')
         </main>
     </div>

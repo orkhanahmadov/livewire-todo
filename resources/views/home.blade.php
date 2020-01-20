@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @livewire('todo')
+    @livewire('create-task')
+
+    @livewire('tasks')
 @endsection
