@@ -10,7 +10,7 @@
                  class="flex items-center justify-between py-2 first:pt-0 last:pb-0"
             >
                 <label class="flex items-center cursor-pointer w-full"
-                       @prevent="markAsComplete(task.id)"
+                       @click.prevent="markAsComplete(task.id)"
                 >
                     <input type="checkbox" class="form-checkbox bg-gray-100 w-5 h-5">
 
@@ -30,7 +30,7 @@
              :key="task.id"
              class="flex items-center justify-between py-2 first:pt-0 last:pb-0">
             <label class="flex items-center cursor-pointer w-full"
-                   @click="markAsIncomplete(task.id)"
+                   @click.prevent="markAsIncomplete(task.id)"
             >
                 <input type="checkbox" class="form-checkbox bg-gray-100 w-5 h-5" checked>
 
@@ -44,7 +44,7 @@
 
             <button class="ml-2 bg-gray-500 text-white text-sm rounded px-1"
                     type="button"
-                    @click="delete(task.id)"
+                    @click="deleteTask(task.id)"
             >Delete</button>
         </div>
     </div>
@@ -70,7 +70,7 @@ export default {
         markAsIncomplete(taskId) {
             this.sendRequest(`/tasks/${taskId}/completed`, 'DELETE')
         },
-        delete(taskId) {
+        deleteTask(taskId) {
             this.sendRequest(`/tasks/${taskId}`, 'DELETE')
         },
         async sendRequest(url, method) {
@@ -83,6 +83,8 @@ export default {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 }
             })
+
+            this.$emit('update-list')
         }
     }
 }

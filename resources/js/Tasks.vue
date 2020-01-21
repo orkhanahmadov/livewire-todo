@@ -3,10 +3,13 @@
         <h1 class="block text-center text-gray-600 font-bold text-2xl uppercase mb-2">Todo list</h1>
 
         <div class="bg-white shadow-lg rounded p-5">
-            <create-task />
+            <create-task @update-list="fetchTasks()" />
 
             <div class="pt-4">
-                <tasks :incomplete-tasks="incompleteTasks" :complete-tasks="completeTasks" />
+                <task-list :incomplete-tasks="incompleteTasks"
+                           :complete-tasks="completeTasks"
+                           @update-list="fetchTasks()"
+                />
             </div>
         </div>
     </div>
@@ -14,12 +17,12 @@
 
 <script>
 import CreateTask from './CreateTask'
-import Tasks from './Tasks'
+import TaskList from './TaskList'
 
 export default {
     components: {
         CreateTask,
-        Tasks
+        TaskList
     },
 
     data() {

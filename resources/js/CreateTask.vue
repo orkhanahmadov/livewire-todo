@@ -28,8 +28,10 @@ export default {
                 body: JSON.stringify({task: this.task})
             })
 
-            if (status === 201)
-                this.$emit('updateList')
+            if (status === 201) {
+                this.task = ''
+                this.$emit('update-list')
+            }
         }
     }
 }

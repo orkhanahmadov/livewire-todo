@@ -14,8 +14,8 @@ class TasksController
         $tasks = Task::orderBy('completed_at')->orderByDesc('id')->get();
 
         return response()->json([
-            'incompleteTasks' => $tasks->filter(fn (Task $task) => is_null($task->completed_at)),
-            'completeTasks' => $tasks->filter(fn (Task $task) => !is_null($task->completed_at)),
+            'incompleteTasks' => $tasks->filter(fn (Task $task) => is_null($task->completed_at))->values(),
+            'completeTasks' => $tasks->filter(fn (Task $task) => !is_null($task->completed_at))->values(),
         ]);
     }
 
