@@ -8,7 +8,7 @@
             <label class="flex items-center cursor-pointer w-full"
                    wire:click.prevent="mark({{ $task->id }}, true)"
             >
-                <input type="checkbox" class="form-checkbox bg-gray-100 w-5 h-5">
+                <input type="checkbox" class="form-checkbox cursor-pointer bg-gray-100 w-5 h-5">
 
                 <span class="block ml-2 text-lg text-gray-600">{{ $task->name }}</span>
             </label>
@@ -29,7 +29,7 @@
             <label class="flex items-center cursor-pointer w-full"
                    wire:click.prevent="mark({{ $task->id }}, false)"
             >
-                <input type="checkbox" class="form-checkbox bg-gray-100 w-5 h-5" checked>
+                <input type="checkbox" class="form-checkbox cursor-pointer bg-gray-100 w-5 h-5" checked>
 
                 <div class="flex items-center justify-between w-full">
                     <span class="block ml-2 text-lg text-gray-600 line-through">{{ $task->name }}</span>
