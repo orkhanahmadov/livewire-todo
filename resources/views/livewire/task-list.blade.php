@@ -6,7 +6,7 @@
     @foreach($incompleteTasks as $task)
         <div class="flex items-center justify-between py-2 first:pt-0 last:pb-0">
             <label class="flex items-center cursor-pointer w-full"
-                   wire:click.prevent="markAsComplete({{ $task->id }})"
+                   wire:click.prevent="mark({{ $task->id }}, true)"
             >
                 <input type="checkbox" class="form-checkbox bg-gray-100 w-5 h-5">
 
@@ -27,7 +27,7 @@
     @foreach($completeTasks as $task)
         <div class="flex items-center justify-between py-2 first:pt-0 last:pb-0">
             <label class="flex items-center cursor-pointer w-full"
-                   wire:click.prevent="markAsIncomplete({{ $task->id }})"
+                   wire:click.prevent="mark({{ $task->id }}, false)"
             >
                 <input type="checkbox" class="form-checkbox bg-gray-100 w-5 h-5" checked>
 

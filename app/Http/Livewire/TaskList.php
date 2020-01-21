@@ -11,7 +11,9 @@ class TaskList extends Component
     public Collection $incompleteTasks;
     public Collection $completeTasks;
 
-    protected $listeners = ['updateList' => 'fetchTasks'];
+    protected $listeners = [
+        'updateList' => 'fetchTasks'
+    ];
 
     public function mount(): void
     {
@@ -26,17 +28,7 @@ class TaskList extends Component
         $this->completeTasks = $tasks->filter(fn (Task $task) => !is_null($task->completed_at));
     }
 
-    public function markAsComplete(int $taskId): void
-    {
-        $this->mark($taskId, true);
-    }
-
-    public function markAsIncomplete(int $taskId): void
-    {
-        $this->mark($taskId, false);
-    }
-
-    private function mark(int $taskId, bool $completed): void
+    public function mark(int $taskId, bool $completed): void
     {
         $task = Task::findOrFail($taskId);
 
