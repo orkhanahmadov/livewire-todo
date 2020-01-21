@@ -25,4 +25,11 @@ class TasksController
 
         return response()->noContent(Response::HTTP_CREATED);
     }
+
+    public function destroy(Task $task): Response
+    {
+        $task->delete();
+
+        return response()->noContent(Response::HTTP_ACCEPTED);
+    }
 }

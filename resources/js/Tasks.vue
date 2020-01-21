@@ -6,8 +6,7 @@
             <create-task />
 
             <div class="pt-4">
-                tasks
-<!--                <tasks />-->
+                <tasks :incomplete-tasks="incompleteTasks" :complete-tasks="completeTasks" />
             </div>
         </div>
     </div>
@@ -36,7 +35,7 @@ export default {
 
     methods: {
         async fetchTasks() {
-            const { body } = await fetch('/tasks', {
+            const response = await fetch('/tasks', {
                 method: 'GET',
                 credentials: 'same-origin',
                 headers: {
@@ -45,7 +44,10 @@ export default {
                 }
             })
 
-            console.log(body)
+            const { incompleteTasks, completeTasks } = await response.json()
+
+            this.incompleteTasks = incompleteTasks
+            this.completeTasks = completeTasks
         }
     }
 }

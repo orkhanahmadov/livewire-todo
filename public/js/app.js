@@ -212,7 +212,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -234,7 +233,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _fetchTasks = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _ref, body;
+        var response, _ref, incompleteTasks, completeTasks;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -251,16 +250,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 2:
-                _ref = _context.sent;
-                body = _ref.body;
-                console.log(body);
+                response = _context.sent;
+                _context.next = 5;
+                return response.json();
 
               case 5:
+                _ref = _context.sent;
+                incompleteTasks = _ref.incompleteTasks;
+                completeTasks = _ref.completeTasks;
+                this.incompleteTasks = incompleteTasks;
+                this.completeTasks = completeTasks;
+
+              case 10:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
+        }, _callee, this);
       }));
 
       function fetchTasks() {
@@ -1566,9 +1572,19 @@ var render = function() {
       [
         _c("create-task"),
         _vm._v(" "),
-        _c("div", { staticClass: "pt-4" }, [
-          _vm._v("\n                tasks\n")
-        ])
+        _c(
+          "div",
+          { staticClass: "pt-4" },
+          [
+            _c("tasks", {
+              attrs: {
+                "incomplete-tasks": _vm.incompleteTasks,
+                "complete-tasks": _vm.completeTasks
+              }
+            })
+          ],
+          1
+        )
       ],
       1
     )
