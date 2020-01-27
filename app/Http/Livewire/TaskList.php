@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Task;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
@@ -45,7 +46,7 @@ class TaskList extends Component
         $this->fetchTasks();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.task-list');
     }

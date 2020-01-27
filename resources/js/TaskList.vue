@@ -19,7 +19,7 @@
 
                 <button class="ml-2 bg-gray-500 text-white text-sm rounded px-1"
                         type="button"
-                        @click="delete(task.id)"
+                        @click="deleteTask(task.id)"
                 >Delete</button>
             </div>
         </div>

@@ -9,15 +9,13 @@
 
 <script>
 export default {
-    data() {
-        return {
-            task: ''
-        }
-    },
+    data: () => ({
+        task: ''
+    }),
 
     methods: {
         async store() {
-            const { status } = await fetch('/tasks', {
+            await fetch('/tasks', {
                 method: 'POST',
                 credentials: 'same-origin',
                 headers: {
@@ -28,10 +26,8 @@ export default {
                 body: JSON.stringify({task: this.task})
             })
 
-            if (status === 201) {
-                this.task = ''
-                this.$emit('update-list')
-            }
+            this.task = ''
+            this.$emit('update-list')
         }
     }
 }

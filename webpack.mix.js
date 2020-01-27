@@ -1,4 +1,5 @@
 const mix = require('laravel-mix')
+const purgecss = require('@fullhuman/postcss-purgecss')
 const tailwindcss = require('tailwindcss')
 
 /*
@@ -19,6 +20,12 @@ mix
         processCssUrls: false,
         postCss: [
             tailwindcss('./tailwind.config.js'),
+            ...mix.inProduction() ? [
+                purgecss({
+                    content: ['./resources/views/**/*.blade.php', './resources/js/**/*.vue'],
+                    defaultExtractor: content => content.match(/[\w-/:.]+(?<!:)/g) || [],
+                }),
+            ] : [],
         ],
     })
     .version()

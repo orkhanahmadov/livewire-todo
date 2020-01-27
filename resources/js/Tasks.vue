@@ -25,12 +25,10 @@ export default {
         TaskList
     },
 
-    data() {
-        return {
-            incompleteTasks: [],
-            completeTasks: [],
-        }
-    },
+    data: () => ({
+        incompleteTasks: [],
+        completeTasks: [],
+    }),
 
     mounted() {
         this.fetchTasks()
